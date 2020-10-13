@@ -47,6 +47,7 @@
     // })
 
     const doc = await BlogPost.findOne().populate('author');
+    console.log(doc);
 
     // console.log(doc) // 'test@gmail.com'
 })();

@@ -1,0 +1,27 @@
+
+<!-- Browser JavaScript -->
+<img id="img" width="40%">
+<img id="img2" width="40%">
+
+<script src="/jquery-2.1.1.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script src="/socket.io-stream.js"></script>
+
+<script>
+function b64(e){var t="";var n=new Uint8Array(e);var r=n.byteLength;for(var i=0;i<r;i++){t+=String.fromCharCode(n[i])}return window.btoa(t)}
+
+$(document).ready(function() {
+  
+  var socket = io();
+
+  socket.on('imageConversionByClient', function(data) {
+    $("#img").attr("src","data:image/png;base64,"+b64(data.buffer));
+  });
+
+  socket.on('imageConversionByServer', function(data) {
+    $("#img2").attr("src",data);
+  });
+
+});
+
+</script>
